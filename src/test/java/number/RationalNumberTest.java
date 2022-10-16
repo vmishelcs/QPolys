@@ -88,7 +88,7 @@ class RationalNumberTest {
         assertAll(() -> assertTrue(r1.isNonNegative()),
                 () -> assertFalse(r2.isNonNegative()),
                 () -> assertFalse(r3.isNonNegative()),
-                () -> assertTrue(r4. isNonNegative()));
+                () -> assertTrue(r4.isNonNegative()));
     }
 
     @Test

@@ -157,6 +157,7 @@ public class RationalNumber extends Number implements Comparable<RationalNumber>
         }
     }
 
+    @Override
     public String toString() {
         return "(" + this.numerator + "/" + this.denominator + ")";
     }

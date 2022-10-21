@@ -19,7 +19,7 @@ public class Term {
     }
 
     /**
-     * Creates a term with specified coefficient and variable with specified power.
+     * Creates a single-variable term with specified coefficient and variable with specified power.
      * @param coefficient The coefficient of the term.
      * @param variableName The variable that is multiplied by the coefficient.
      * @param power The power of the variable.
@@ -31,36 +31,25 @@ public class Term {
     }
 
     /**
-     * Creates a term with specified coefficient and variables with specified powers.
-     * @param coefficient The coefficient of the term.
-     * @param variableNames The array of variable names (e.g.: x, y, z, etc).
-     * @param powers The array of powers corresponding to the variable names; that is, powers[i] corresponds to
-     *               the power of variableNames[i].
+     * Creates a multivariate polynomial term.
+     * @param coefficient The coefficient of this term.
+     * @param varPowerMap A variable-power mapping used to set up the monomials that make up this term.
+     *                    Example: { (x, 2), (y, 2), (z, 5) } creates x^2y^2z^5.
      */
-    public Term(RationalNumber coefficient, VariableName[] variableNames, int[] powers) {
-        // Make sure variablesNames and powers arrays are the same length.
-        if (variableNames.length != powers.length) {
-            throw new TermConstructorException(
-                    "VariableName array and powers array must be the same length."
-            );
-        }
-
+    public Term(RationalNumber coefficient, TreeMap<VariableName, Integer> varPowerMap) {
         this.coefficient = coefficient;
-        for (int i = 0; i < variableNames.length; ++i) {
-            Monomial m = new Monomial(variableNames[i], powers[i]);
-            Monomial putResult = monomialMap.put(variableNames[i], m);
-            if (putResult != null) {
-                throw new TermConstructorException(
-                        "Every variable name in the term must be unique."
-                );
-            }
+        for (var entry : varPowerMap.entrySet()) {
+            monomialMap.put(entry.getKey(), new Monomial(entry.getKey(), entry.getValue()));
         }
     }
 
-    public RationalNumber evaluateAt(RationalNumber r) {
+    public RationalNumber evaluateAt(TreeMap<VariableName, RationalNumber> varValueMap) {
         RationalNumber result = this.coefficient;
-        for (var key : monomialMap.keySet()) {
-            result = result.multiply(monomialMap.get(key).evaluateAt(r));
+        for (var entry : varValueMap.entrySet()) {
+            Monomial m = monomialMap.get(entry.getKey());
+            if (m != null) {
+                result = result.multiply(m.evaluateAt(entry.getValue()));
+            }
         }
         return result;
     }

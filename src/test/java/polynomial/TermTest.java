@@ -51,5 +51,8 @@ class TermTest {
         varPowerMap.put(VariableName.y, 2);
         varPowerMap.put(VariableName.z, 3);
 
+        Term term3 = new Term(coeff, varPowerMap);
+        RationalNumber expected = coeff.multiply(xVal).multiply(yVal.pow(2)).multiply(zVal.pow(3));
+        assertEquals(expected, term3.evaluateAt(varValueMap));
     }
 }

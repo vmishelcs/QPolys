@@ -1,6 +1,5 @@
 package polynomial;
 
-import exceptions.TermConstructorException;
 import number.RationalNumber;
 
 import java.util.HashMap;
@@ -46,9 +45,9 @@ public class Term {
     public RationalNumber evaluateAt(TreeMap<VariableName, RationalNumber> varValueMap) {
         RationalNumber result = this.coefficient;
         for (var entry : varValueMap.entrySet()) {
-            Monomial m = monomialMap.get(entry.getKey());
-            if (m != null) {
-                result = result.multiply(m.evaluateAt(entry.getValue()));
+            Monomial monomial = monomialMap.get(entry.getKey());
+            if (monomial != null) {
+                result = result.multiply(monomial.evaluateAt(entry.getValue()));
             }
         }
         return result;

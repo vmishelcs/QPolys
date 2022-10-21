@@ -21,14 +21,7 @@ public class Monomial {
     }
 
     public RationalNumber evaluateAt(RationalNumber r) {
-        if (power == 0) {
-            return new RationalNumber(1, 1);
-        }
-        RationalNumber result = r;
-        for (int i = 1; i < power; ++i) {
-            result = result.multiply(r);
-        }
-        return result;
+        return r.pow(power);
     }
 
     @Override

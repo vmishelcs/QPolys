@@ -292,6 +292,18 @@ class RationalNumberTest {
         }
     }
 
+    @Test
+    @DisplayName("Power")
+    void testPow() {
+        RationalNumber r = new RationalNumber(1, 2);
+        RationalNumber rPow = r.pow(3);
+        assertEquals(new RationalNumber(1, 8), rPow);
+
+        RationalNumber s = new RationalNumber(-1, 2);
+        RationalNumber sPow = s.pow(3);
+        assertEquals(new RationalNumber(-1, 8), sPow);
+    }
+
     // GCD helper method.
     private int greatestCommonDivisor(int a, int b) {
         if (b == 0) {

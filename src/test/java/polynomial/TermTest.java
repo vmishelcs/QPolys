@@ -35,14 +35,21 @@ class TermTest {
         final RationalNumber yVal = new RationalNumber(3, 1);
         final RationalNumber zVal = new RationalNumber(-1, 3);
 
-        Term term1 = new Term(coeff);
         TreeMap<VariableName, RationalNumber> varValueMap = new TreeMap<>();
         varValueMap.put(VariableName.x, xVal);
         varValueMap.put(VariableName.y, yVal);
         varValueMap.put(VariableName.z, zVal);
+
+        Term term1 = new Term(coeff);
         assertEquals(coeff, term1.evaluateAt(varValueMap));
 
         Term term2 = new Term(coeff, VariableName.x, 1);
         assertEquals(coeff.multiply(xVal), term2.evaluateAt(varValueMap));
+
+        TreeMap<VariableName, Integer> varPowerMap = new TreeMap<>();
+        varPowerMap.put(VariableName.x, 1);
+        varPowerMap.put(VariableName.y, 2);
+        varPowerMap.put(VariableName.z, 3);
+
     }
 }

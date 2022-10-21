@@ -98,6 +98,13 @@ public class RationalNumber extends Number implements Comparable<RationalNumber>
         return new RationalNumber(this.numerator * r.denominator,
                 this.denominator * r.numerator);
     }
+    public RationalNumber pow(int power) {
+        RationalNumber result = new RationalNumber(1, 1);
+        for (int i = 0; i < power; ++i) {
+            result = result.multiply(this);
+        }
+        return result;
+    }
 
     // Accessor methods.
     public int getNumerator() {

@@ -3,6 +3,11 @@ package polynomial;
 import exceptions.MonomialPowerLessThanZeroException;
 import number.RationalNumber;
 
+/**
+ * Monomial class. Stores the monomial variable and the power to which said variable is raised to. The power must be
+ * nonnegative.
+ * e.g.: x^2 -> variableName = x, power = 2
+ */
 public class Monomial {
     private VariableName variableName;
     private int power;
@@ -22,6 +27,15 @@ public class Monomial {
         RationalNumber result = r;
         for (int i = 1; i < power; ++i) {
             result = result.multiply(r);
+        }
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        String result = variableName.toString();
+        if (power > 1) {
+            result += "^" + power;
         }
         return result;
     }

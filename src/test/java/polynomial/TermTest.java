@@ -12,8 +12,15 @@ class TermTest {
     void testInitialize() {
         final RationalNumber r = new RationalNumber(1, 2);
         Term term1 = new Term(r);
+        assertEquals("(1/2)", term1.toString());
 
         Term term2 = new Term(r, VariableName.x, 1);
+        assertEquals("(1/2)x", term2.toString());
+
+        VariableName[] variables = { VariableName.x, VariableName.y, VariableName.z };
+        int[] powers = { 1, 2, 3 };
+        Term term3 = new Term(r, variables, powers);
+        assertEquals("(1/2)xy^2z^3", term3.toString());
     }
 
     @Test

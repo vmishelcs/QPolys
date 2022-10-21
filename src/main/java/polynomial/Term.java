@@ -70,8 +70,8 @@ public class Term {
         // Sort variable names.
         TreeMap<VariableName, Monomial> sorted = new TreeMap<>(monomialMap);
         StringBuilder result = new StringBuilder(coefficient.toString());
-        for (var key : sorted.keySet()) {
-            result.append(key.toString());
+        for (var entry : sorted.entrySet()) {
+            result.append(entry.getValue());
         }
         return result.toString();
     }

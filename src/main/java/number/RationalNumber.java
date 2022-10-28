@@ -15,9 +15,9 @@ public class RationalNumber extends Number implements Comparable<RationalNumber>
 
         int gcd = greatestCommonDivisor(Math.abs(numerator),
                 Math.abs(denominator));
-        boolean positive = (numerator > 0 && denominator > 0) ||
+        boolean nonnegative = (numerator >= 0 && denominator > 0) ||
                 (numerator < 0 && denominator < 0);
-        this.numerator = positive ?
+        this.numerator = nonnegative ?
                 Math.abs(numerator / gcd) :
                 -Math.abs(numerator / gcd);
         this.denominator = Math.abs(denominator / gcd);
@@ -166,6 +166,17 @@ public class RationalNumber extends Number implements Comparable<RationalNumber>
 
     @Override
     public String toString() {
-        return "(" + this.numerator + "/" + this.denominator + ")";
+        StringBuilder result = new StringBuilder();
+        if (this.denominator > 1) {
+            result.append("(");
+            result.append(this.numerator);
+            result.append("/");
+            result.append(this.denominator);
+            result.append(")");
+        }
+        else {
+            result.append(this.numerator);
+        }
+        return result.toString();
     }
 }

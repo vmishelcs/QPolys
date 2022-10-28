@@ -16,8 +16,32 @@ class RationalNumberTest {
         int numerator = 1;
         int denominator = 2;
         RationalNumber r = new RationalNumber(numerator, denominator);
-        assertAll(() -> assertEquals(numerator, r.getNumerator()),
-                () -> assertEquals(denominator, r.getDenominator()));
+        assertAll(
+                () -> assertEquals(numerator, r.getNumerator()),
+                () -> assertEquals(denominator, r.getDenominator())
+        );
+    }
+
+    @Test
+    @DisplayName("String")
+    void testString() {
+        RationalNumber r = new RationalNumber(1, 2);
+        assertEquals("(1/2)", r.toString());
+
+        RationalNumber s = new RationalNumber(2, 1);
+        assertEquals("2", s.toString());
+    }
+
+    @Test
+    @DisplayName("Values")
+    void testValueMethods() {
+        RationalNumber r = new RationalNumber(1, 2);
+        assertAll(
+                () -> assertEquals(0, r.intValue()),
+                () -> assertEquals(0, r.longValue()),
+                () -> assertEquals(0.5, r.floatValue()),
+                () -> assertEquals(0.5, r.doubleValue())
+        );
     }
 
     @Test
@@ -29,8 +53,10 @@ class RationalNumberTest {
         int gcd = greatestCommonDivisor(numerator, denominator);
         int numeratorReduced = numerator / gcd;
         int denominatorReduced = denominator / gcd;
-        assertAll(() -> assertEquals(numeratorReduced, r.getNumerator()),
-                () -> assertEquals(denominatorReduced, r.getDenominator()));
+        assertAll(
+                () -> assertEquals(numeratorReduced, r.getNumerator()),
+                () -> assertEquals(denominatorReduced, r.getDenominator())
+        );
     }
 
     @Test
@@ -76,6 +102,11 @@ class RationalNumberTest {
         RationalNumber r1 = new RationalNumber(1, 2);
         RationalNumber r2 = new RationalNumber(1, 3);
         assertFalse(r1.equals(r2));
+
+        String s = "test";
+        assertFalse(r1.equals(s));
+
+        assertFalse(r1.equals(null));
     }
 
     @Test
@@ -85,10 +116,12 @@ class RationalNumberTest {
         RationalNumber r2 = new RationalNumber(-1, 1);
         RationalNumber r3 = new RationalNumber(1, -1);
         RationalNumber r4 = new RationalNumber(-1, -1);
-        assertAll(() -> assertTrue(r1.isNonNegative()),
+        assertAll(
+                () -> assertTrue(r1.isNonNegative()),
                 () -> assertFalse(r2.isNonNegative()),
                 () -> assertFalse(r3.isNonNegative()),
-                () -> assertTrue(r4.isNonNegative()));
+                () -> assertTrue(r4.isNonNegative())
+        );
     }
 
     @Test

@@ -66,7 +66,7 @@ public class Term implements Comparable<Term> {
      * Obtains the set of variables that makes up this term.
      * @return Set of variables that makes up this term.
      */
-    public Set<VariableName> getVariables() {
+    public Set<VariableName> getVariableSet() {
         return mapVarPower.keySet();
     }
 

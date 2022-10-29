@@ -10,9 +10,14 @@ class PolynomialTest {
     @Test
     @DisplayName("Initialize")
     void testInitialize() {
-        Term t1 = new Term(RationalNumber.zero);
+        Polynomial p0 = new Polynomial();
+        assertEquals(RationalNumber.zero.toString(), p0.toString());
+        assertTrue(p0.getVariableSet().isEmpty());
+
+        RationalNumber r1 = new RationalNumber(1, 1);
+        Term t1 = new Term(r1);
         Polynomial p1 = new Polynomial(t1);
-        assertEquals("0", p1.toString());
+        assertEquals("1", p1.toString());
         assertTrue(p1.getVariableSet().isEmpty());
 
         RationalNumber r2 = new RationalNumber(1, 2);

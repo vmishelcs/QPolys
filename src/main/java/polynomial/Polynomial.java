@@ -22,7 +22,7 @@ public class Polynomial {
      */
     public Polynomial(Term... terms) {
         for (Term term : terms) {
-            this.varSet.addAll(term.getVariables());
+            this.varSet.addAll(term.getVariableSet());
             this.terms.add(term);
         }
     }

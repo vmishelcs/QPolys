@@ -4,6 +4,7 @@ import exceptions.TermEvaluationMissingVariable;
 import number.RationalNumber;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -59,6 +60,22 @@ public class Term implements Comparable<Term> {
             result = result.multiply(varValue.pow(power));
         }
         return result;
+    }
+
+    /**
+     * Obtains the set of variables that makes up this term.
+     * @return Set of variables that makes up this term.
+     */
+    public Set<VariableName> getVariables() {
+        return mapVarPower.keySet();
+    }
+
+    /**
+     *
+     * @return True if the coefficient is nonnegative, false otherwise.
+     */
+    public boolean isNonNegative() {
+        return coefficient.isNonNegative();
     }
 
     @Override

@@ -71,11 +71,33 @@ public class Term implements Comparable<Term> {
     }
 
     /**
-     *
-     * @return True if the coefficient is nonnegative, false otherwise.
+     * Checks if two terms are like (i.e., they can be combined into one term where the coefficient is the sum of the
+     * two terms' coefficients.
+     * @param otherTerm Term to compare to this term.
+     * @return True if otherTerm is like this term. False otherwise.
      */
-    public boolean isNonNegative() {
-        return coefficient.isNonNegative();
+    public boolean like(Term otherTerm) {
+        // Get a sorted set of variables of both terms.
+        TreeSet<VariableName> varSet = new TreeSet<>(this.mapVarPower.keySet());
+        varSet.addAll(otherTerm.mapVarPower.keySet());
+
+        for (var currentVariable : varSet) {
+            Integer thisPower = this.mapVarPower.get(currentVariable);
+            Integer otherPower = otherTerm.mapVarPower.get(currentVariable);
+            if (thisPower == null || otherPower == null) {
+                // If we are here, one of the terms does not have currentVariable.
+                return false;
+            }
+
+            if (thisPower != otherPower) {
+                // If the powers differ, return false.
+                return false;
+            }
+        }
+
+        // If we are here, all the variables are the same and their powers are the same as well. Thus, the terms must
+        // be like.
+        return true;
     }
 
     @Override
@@ -151,7 +173,16 @@ public class Term implements Comparable<Term> {
             }
         }
 
-        // If we are here, the terms must be equal.
-        return 0;
+        // If we are here, the variables and their powers are equal.
+        // Compare the coefficients.
+        if (this.coefficient.compareTo(otherTerm.coefficient) == 1) {
+            return 1;
+        }
+        else if (this.coefficient.compareTo(otherTerm.coefficient) == -1) {
+            return -1;
+        }
+
+        // If all else equal, return 1 so that we can add repeated term to the terms map.
+        return 1;
     }
 }

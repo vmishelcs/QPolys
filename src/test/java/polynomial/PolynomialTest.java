@@ -41,4 +41,14 @@ class PolynomialTest {
         assertEquals("(1/2)x + 2y", p5.toString());
         assertEquals(2, p5.getVariableSet().size());
     }
+
+    @Test
+    @DisplayName("Initialize - repeat term")
+    void testInitializeRepeatTerm() {
+        RationalNumber r = new RationalNumber(1, 1);
+        Term t1 = new Term(r, VariableName.x, 1);
+        Term t2 = new Term(r.multiply(new RationalNumber(2, 1)), VariableName.x, 1);
+        Polynomial p2 = new Polynomial(t1, t2);
+        assertEquals("2x + 1x", p2.toString());
+    }
 }

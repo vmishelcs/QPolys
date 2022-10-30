@@ -94,4 +94,33 @@ class TermTest {
         assertEquals(-1, term4.compareTo(term5));
         assertEquals(1, term5.compareTo(term4));
     }
+
+    @Test
+    @DisplayName("Like terms")
+    void testLikeTerms() {
+        final RationalNumber r1 = new RationalNumber(1, 2);
+        final RationalNumber r2 = new RationalNumber(-1, 2);
+
+        Map<VariableName, Integer> mapVarPower1 = new HashMap<>();
+        mapVarPower1.put(VariableName.x, 2);
+        mapVarPower1.put(VariableName.y, 3);
+        Map<VariableName, Integer> mapVarPower2 = new HashMap<>();
+        mapVarPower2.put(VariableName.x, 2);
+        mapVarPower2.put(VariableName.y, 3);
+        Term t1 = new Term(r1, mapVarPower1);
+        Term t2 = new Term(r2, mapVarPower2);
+        assertTrue(t1.like(t2));
+
+        Map<VariableName, Integer> mapVarPower3 = new HashMap<>();
+        mapVarPower3.put(VariableName.x, 3);
+        mapVarPower3.put(VariableName.y, 3);
+        Term t3 = new Term(r1, mapVarPower3);
+        assertFalse(t1.like(t3));
+        assertFalse(t2.like(t3));
+
+        Map<VariableName, Integer> mapVarPower4 = new HashMap<>();
+        mapVarPower4.put(VariableName.x, 3);
+        Term t4 = new Term(r2, mapVarPower4);
+        assertFalse(t3.like(t4));
+    }
 }

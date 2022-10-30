@@ -18,6 +18,7 @@ public class Polynomial {
 
     /**
      * Creates a polynomial with the specified terms.
+     * Note: Adding the same exact Term object several times causes undefined behavior.
      * @param terms An array of terms for the polynomial.
      */
     public Polynomial(Term... terms) {
@@ -25,6 +26,8 @@ public class Polynomial {
             this.varSet.addAll(term.getVariableSet());
             this.terms.add(term);
         }
+
+        // TODO: Collect like terms.
     }
 
     public Set<VariableName> getVariableSet() {
@@ -35,7 +38,7 @@ public class Polynomial {
     public String toString() {
         StringBuilder result = new StringBuilder();
 
-        // Iterate through all terms in DESCENDING order and append to resulting string.
+        // Iterate through all terms in DESCENDING order and append to result string.
         for (Term term : terms.descendingSet()) {
             result.append(term.toString());
             // Add a '+' unless we are at the first term (AKA last term in descending order).

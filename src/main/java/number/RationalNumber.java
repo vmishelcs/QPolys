@@ -26,6 +26,12 @@ public class RationalNumber extends Number implements Comparable<RationalNumber>
     /**
      * Obtains the greatest common divisor of two integers to store a reduced
      * a rational number in its reduced form.
+     *
+     * This is an implementation of Stein's algorithm, also known as the
+     * binary GCD algorithm.
+     *
+     * https://en.wikipedia.org/wiki/Binary_GCD_algorithm
+     *
      * @param a Integer.
      * @param b Integer.
      * @return The greatest common divisor of a and b.

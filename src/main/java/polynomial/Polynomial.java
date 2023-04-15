@@ -18,7 +18,7 @@ public class Polynomial {
 
     /**
      * Creates a polynomial with the specified terms.
-     * Note: Adding the same exact Term object several times causes undefined behavior.
+     * Note: Adding the same Term object several times causes undefined behavior.
      * @param terms An array of terms for the polynomial.
      */
     public Polynomial(Term... terms) {

@@ -72,7 +72,7 @@ public class Term implements Comparable<Term> {
 
     /**
      * Checks if two terms are like (i.e., they can be combined into one term where the coefficient is the sum of the
-     * two terms' coefficients.
+     * two terms' coefficients).
      * @param otherTerm Term to compare to this term.
      * @return True if otherTerm is like this term. False otherwise.
      */
